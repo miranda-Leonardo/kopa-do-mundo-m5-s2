@@ -1,12 +1,15 @@
 from datetime import datetime
 
+
 class NegativeTitlesError(Exception):
     def __init__(self, message: str):
         self.message = message
 
+
 class InvalidYearCupError(Exception):
     def __init__(self, message: str):
         self.message = message
+
 
 class ImpossibleTitlesError(Exception):
     def __init__(self, message: str):
@@ -38,18 +41,18 @@ def valid_titles_year(titles: str, first_cup: str) -> None:
     diference = int(first_cup) - 1930
     if diference / 4 <= titles:
         return
-    
+
     raise ImpossibleTitlesError("impossible to have more titles than disputed cups")
 
 
-def data_processing(data: dict) -> None:
+def data_processing(data: dict) -> str:
     try:
         valid_titles(data["titles"])
         valid_first_cup(data["first_cup"])
         valid_titles_year(data["titles"], data["first_cup"])
     except NegativeTitlesError as err:
-        print(err.message)
+        return err.message
     except InvalidYearCupError as err:
-        print(err.message)
+        return err.message
     except ImpossibleTitlesError as err:
-        print(err.message)
+        return err.message
