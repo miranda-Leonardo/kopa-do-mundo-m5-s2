@@ -3,5 +3,5 @@ from .views import TeamsView, TeamsFilterView
 
 urlpatterns = [
     path("teams/", TeamsView.as_view()),
-    path("teams/<int:team_id>/", TeamsFilterView)
+    path("teams/<int:team_id>/", TeamsFilterView.as_view())
 ]
